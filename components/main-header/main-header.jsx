@@ -1,10 +1,12 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 
 import logoImg from "@/assets/logo.png";
 import classes from "./main-header.module.css";
 import MainHeaderBackground from "./main-header-backbround";
-import NavLink from "./nav-link";
+
+import NavBar from "./nav-bar";
 
 export default function MainHeader() {
   return (
@@ -15,17 +17,7 @@ export default function MainHeader() {
           <Image src={logoImg} priority alt="Logo" />
           NextLevel Food
         </Link>
-
-        <nav className={classes.nav}>
-          <ul>
-            <li>
-              <NavLink href="/meals">Browse Meals</NavLink>
-            </li>
-            <li>
-              <NavLink href="/community">Foodies Community</NavLink>
-            </li>
-          </ul>
-        </nav>
+        <NavBar />
       </header>
     </>
   );

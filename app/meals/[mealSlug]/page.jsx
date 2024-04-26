@@ -26,7 +26,7 @@ function MealDetailsPage({ params }) {
           <p className={classes.summary}>{meals.summary}</p>
         </div>
       </header>
-      <main>
+      <main className={classes.instructions1}>
         <p
           className={classes.instructions}
           dangerouslySetInnerHTML={{

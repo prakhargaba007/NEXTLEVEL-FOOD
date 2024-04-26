@@ -125,3 +125,15 @@
     opacity: 0;
   }
 }
+
+@media only screen and (max-width: 1111px) {
+  .header {
+    flex-direction: column;
+  }
+  .instructions1 {
+    margin: 0 15px;
+  }
+  .image {
+    width: auto;
+  }
+}
