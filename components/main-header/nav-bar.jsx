@@ -25,9 +25,7 @@ export default function NavBar() {
           </button>
         </ul>
       </nav>
-      <button className="nav-btn" onClick={showNavbar}>
-        <FaBars />
-      </button>
+      <button className="nav-btn" onClick={showNavbar}><FaBars /></button>
     </div>
   );
 }
