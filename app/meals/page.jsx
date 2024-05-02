@@ -8,7 +8,7 @@ import MealsGrid from "@/components/meals/meals-grid";
 
 async function fetchMeals() {
   try {
-    const response = await fetch(`${process.env.URL}/meals/`);
+    const response = await fetch(`https://nextlevel-food-backend.onrender.com/meals/`);
     if (!response.ok) {
       throw new Error("Failed to fetch meals.");
     }

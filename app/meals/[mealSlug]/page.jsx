@@ -13,7 +13,7 @@ export async function generateMetadata({ params }) {
 
   // console.log(params);
 
-  const meals = await fetch(`${process.env.URL}/meals/` + params);
+  const meals = await fetch(`https://nextlevel-food-backend.onrender.com/meals/` + params);
 
   return {
     title: meals.title,
@@ -25,7 +25,7 @@ async function MealDetailsPage({ params }) {
   // console.log(params.mealSlug);
 
   const response = await fetch(
-    "http://localhost:8080/meals/getPost/" + params.mealSlug
+    "https://nextlevel-food-backend.onrender.com/meals/getPost/" + params.mealSlug
   );
 
   const resData = await response.json();

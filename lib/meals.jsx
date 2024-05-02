@@ -36,7 +36,7 @@ export async function saveMeal(meal) {
   meal.image = `/images/${fileName}`;
   console.log(meal);
 
-  const response = await fetch(`${process.env.URL}/meals/share`, {
+  const response = await fetch(`https://nextlevel-food-backend.onrender.com/meals/share`, {
     method: "POST",
     body: JSON.stringify(meal),
     headers: { "Content-Type": "application/json" },
@@ -51,20 +51,4 @@ export async function saveMeal(meal) {
   const data = await response.json();
 
   console.log(data);
-
-  // db.prepare(
-  //   `
-  //   INSERT INTO meals
-  //     (title, summary, instructions, creator, creator_email, image, slug)
-  //   VALUES (
-  //     @title,
-  //     @summary,
-  //     @instructions,
-  //     @creator,
-  //     @creator_email,
-  //     @image,
-  //     @slug
-  //   )
-  // `
-  // ).run(meal);
 }
