@@ -32,21 +32,39 @@ export async function saveMeal(meal) {
       }
     }
   );
-  meal.image = `/images/${fileName}`;
 
-  db.prepare(
-    `
-    INSERT INTO meals
-      (title, summary, instructions, creator, creator_email, image, slug)
-    VALUES (
-      @title,
-      @summary,
-      @instructions,
-      @creator,
-      @creator_email,
-      @image,
-      @slug
-    )
-  `
-  ).run(meal);
+  meal.image = `/images/${fileName}`;
+  console.log(meal);
+
+  const response = await fetch(`${process.env.URL}/meals/share`, {
+    method: "POST",
+    body: JSON.stringify(meal),
+    headers: { "Content-Type": "application/json" },
+  });
+
+  console.log(response);
+
+  if (!response.ok) {
+    throw new Error("Something went wrong!");
+  }
+
+  const data = await response.json();
+
+  console.log(data);
+
+  // db.prepare(
+  //   `
+  //   INSERT INTO meals
+  //     (title, summary, instructions, creator, creator_email, image, slug)
+  //   VALUES (
+  //     @title,
+  //     @summary,
+  //     @instructions,
+  //     @creator,
+  //     @creator_email,
+  //     @image,
+  //     @slug
+  //   )
+  // `
+  // ).run(meal);
 }

@@ -4,19 +4,41 @@ import Image from "next/image";
 import { getMeal } from "@/lib/meals";
 import { notFound } from "next/navigation";
 
-function MealDetailsPage({ params }) {
-  const meals = getMeal(params.mealSlug);
+export async function generateMetadata({ params }) {
+  // const meals = getMeal(params.mealSlug);
 
-  if (!meals) {
-    notFound();
-  }
+  // if (!meals) {
+  //   notFound();
+  // }
+
+  // console.log(params);
+
+  const meals = await fetch(`${process.env.URL}/meals/` + params);
+
+  return {
+    title: meals.title,
+    description: meals.summary,
+  };
+}
+
+async function MealDetailsPage({ params }) {
+  // console.log(params.mealSlug);
+
+  const response = await fetch(
+    "http://localhost:8080/meals/getPost/" + params.mealSlug
+  );
+
+  const resData = await response.json();
+  // console.log(resData);
+  const meals = resData.meal[0];
+  // console.log("meals", meals);
 
   meals.instructions = meals.instructions.replace(/\n/g, "<br />");
   return (
     <>
       <header className={classes.header}>
         <div className={classes.image}>
-          <Image src={meals.image} fill />
+          <Image src={meals.image} alt={meals.title} fill />
         </div>
         <div className={classes.headerText}>
           <h1>{meals.title}</h1>
